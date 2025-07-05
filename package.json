@@ -1,0 +1,12 @@
+{
+  "name": "vanilla-js-changelog-renderer",
+  "version": "1.0.0",
+  "description": "Vanilla JavaScript example for git-changelog-manager renderer",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html"
+  },
+  "keywords": ["changelog", "vanilla-js", "renderer", "example"],
+  "author": "Jonathan Ellwood",
+  "license": "MIT"
+}

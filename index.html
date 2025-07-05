@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog Renderer - Vanilla JS Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Phosphor Icons for beautiful UI -->
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css">
+</head>
+<body class="mode-dark">
+    <div class="changelog-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="changelog-sidebar">
+            <div class="sidebar-header">
+                <h2>📝 Changelog</h2>
+                <p>Release History</p>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="sidebar-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalReleases">0</span>
+                        <span class="stat-label">Releases</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="totalChanges">0</span>
+                        <span class="stat-label">Changes</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-releases" id="sidebarReleases">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="changelog-main">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1 id="appTitle">My App Release Notes</h1>
+                        <p class="page-description">Complete version history and updates</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Changelog Container -->
+            <div class="changelog-container">
+                <!-- View Toggle Buttons -->
+                <div class="view-controls">
+                    <div class="view-toggles">
+                        <button class="toggle-btn active" data-view="grid">
+                            <i class="ph ph-duotone ph-squares-four"></i>
+                            Grid
+                        </button>
+                        <button class="toggle-btn" data-view="list">
+                            <i class="ph ph-duotone ph-list"></i>
+                            List
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search and Filter Bar -->
+                <div class="filter-bar">
+                    <div class="filter-left">
+                        <div class="search-box">
+                            <i class="ph ph-duotone ph-magnifying-glass"></i>
+                            <input 
+                                type="text" 
+                                id="searchInput"
+                                placeholder="Search releases..."
+                                class="search-input"
+                            />
+                        </div>
+                    </div>
+                    <div class="filter-right">
+                        <div class="sort-dropdown">
+                            <label>Sort by:</label>
+                            <select id="sortSelect">
+                                <option value="date">Date</option>
+                                <option value="version">Version</option>
+                                <option value="changes">Changes</option>
+                            </select>
+                        </div>
+                        <div class="results-count" id="resultsCount">
+                            Showing 0 of 0 releases
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-bar">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="ph ph-duotone ph-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="statTotalReleases">0</div>
+                            <div class="stat-label">Total Releases</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="ph ph-duotone ph-list-bullets"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="statTotalChanges">0</div>
+                            <div class="stat-label">Total Changes</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="ph ph-duotone ph-rocket-launch"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="statLatestVersion">0.0.0</div>
+                            <div class="stat-label">Latest Version</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loadingState" class="loading-state" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Loading releases...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <div class="empty-icon">
+                        <i class="ph ph-duotone ph-file-text"></i>
+                    </div>
+                    <h3>No releases found</h3>
+                    <p id="emptyMessage">No releases have been published yet</p>
+                </div>
+
+                <!-- Releases Grid -->
+                <div id="releasesGrid" class="releases-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <!-- Releases List -->
+                <div id="releasesList" class="releases-list" style="display: none;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Release Modal -->
+    <div id="releaseModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Release Details</h2>
+                <button class="modal-close" id="modalClose">
+                    <i class="ph ph-duotone ph-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="release-detail">
+                    <div class="release-meta" id="modalMeta">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    <div class="release-content">
+                        <div class="release-summary" id="modalSummary">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                        <div class="markdown-content" id="modalContent">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

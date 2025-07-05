@@ -1,0 +1,906 @@
+/* Modern CSS Variables for Dark/Light Theme */
+:root {
+    /* Light Theme Colors */
+    --c-bg: #ffffff;
+    --c-bg-alt: #f8f9fa;
+    --c-fg: #1a1a1a;
+    --c-accent: #007bff;
+    --c-card-bg: #ffffff;
+    --br-sm: 4px;
+    --br-md: 8px;
+    --br-lg: 12px;
+}
+
+/* Dark Theme Colors */
+.mode-dark {
+    --c-bg: #0d1117;
+    --c-bg-alt: #161b22;
+    --c-fg: #e6edf3;
+    --c-accent: #58a6ff;
+    --c-card-bg: #21262d;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--c-bg);
+    color: var(--c-fg);
+    line-height: 1.6;
+}
+
+/* Apple-Style Layout */
+.changelog-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--c-bg);
+}
+
+.changelog-sidebar {
+    width: 280px;
+    background: color-mix(in srgb, var(--c-bg) 98%, var(--c-accent) 2%);
+    border-right: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    padding: 1rem 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+}
+
+.changelog-main {
+    flex: 1;
+    min-width: 0;
+    margin-left: 280px;
+    padding: 0;
+}
+
+.sidebar-header {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    margin-bottom: 1rem;
+    max-height: fit-content !important;
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--c-fg);
+}
+
+.sidebar-header p {
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.sidebar-stats {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 2rem 1rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    margin-bottom: 1rem 16px;
+    max-height: fit-content !important;
+}
+
+.sidebar-stats .stat {
+    text-align: center;
+    flex: 1;
+}
+
+.sidebar-stats .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--c-accent);
+}
+
+.sidebar-stats .stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    margin-top: 0.25rem;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--c-bg) 0%, color-mix(in srgb, var(--c-bg) 95%, var(--c-accent) 5%) 100%);
+    border-bottom: 2px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-content h1 {
+    color: var(--c-fg);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.page-description {
+    color: color-mix(in srgb, var(--c-fg) 70%, transparent);
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0;
+}
+
+/* View Controls */
+.view-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 2rem;
+    margin-bottom: 0;
+}
+
+.view-toggles {
+    display: flex;
+    background: var(--c-card-bg);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--c-fg);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+}
+
+.toggle-btn.active {
+    background: var(--c-accent);
+    color: white;
+}
+
+/* Main Container */
+.changelog-container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 2rem;
+    padding: 1.5rem;
+    background: var(--c-bg);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-lg);
+    gap: 2rem;
+}
+
+.filter-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.filter-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: color-mix(in srgb, var(--c-fg) 50%, transparent);
+    font-size: 1.1rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-md);
+    background: var(--c-bg-alt);
+    color: var(--c-fg);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-accent) 20%, transparent);
+}
+
+.sort-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sort-dropdown label {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-fg) 70%, transparent);
+    font-weight: 500;
+}
+
+.sort-dropdown select {
+    padding: 0.5rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-md);
+    background: var(--c-bg-alt);
+    color: var(--c-fg);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.results-count {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Stats Bar */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 0 2rem 2rem;
+    padding: 0;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--c-bg);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-lg);
+    transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+    border-color: var(--c-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--c-accent) 15%, transparent);
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--br-md);
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+    color: var(--c-accent);
+    font-size: 1.5rem;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-card .stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--c-fg);
+    margin-bottom: 0.25rem;
+}
+
+.stat-card .stat-label {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    font-weight: 500;
+}
+
+/* Loading and Empty States */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-top: 3px solid var(--c-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    color: color-mix(in srgb, var(--c-fg) 30%, transparent);
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: var(--c-fg);
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    font-size: 1rem;
+}
+
+/* Releases Grid */
+.releases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin: 0 2rem 2rem;
+    padding: 0;
+}
+
+/* Release Cards */
+.release-card {
+    background: var(--c-bg);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-lg);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.release-card:hover {
+    border-color: var(--c-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--c-accent) 15%, transparent);
+}
+
+.release-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.release-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--br-md);
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+    color: var(--c-accent);
+    font-size: 1.2rem;
+}
+
+.release-info {
+    flex: 1;
+}
+
+.release-version {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--c-fg);
+    margin: 0 0 0.25rem 0;
+}
+
+.release-date {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    margin: 0;
+}
+
+.release-tag {
+    padding: 0.25rem 0.75rem;
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--c-accent);
+}
+
+.release-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.release-summary {
+    color: var(--c-fg);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.release-summary p {
+    margin: 0;
+}
+
+.release-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+}
+
+.release-stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+}
+
+.stat-item i {
+    color: var(--c-accent);
+    font-size: 0.8rem;
+}
+
+.release-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-md);
+    background: var(--c-bg-alt);
+    color: var(--c-fg);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+}
+
+.action-btn.primary {
+    background: var(--c-accent);
+    color: var(--c-bg);
+    border-color: var(--c-accent);
+}
+
+.action-btn.primary:hover {
+    background: color-mix(in srgb, var(--c-accent) 90%, black);
+    border-color: color-mix(in srgb, var(--c-accent) 90%, black);
+}
+
+/* Releases List View */
+.releases-list {
+    margin: 0 2rem 2rem;
+}
+
+.release-row {
+    background: var(--c-bg);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    border-radius: var(--br-lg);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.release-row:hover {
+    border-color: var(--c-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--c-accent) 15%, transparent);
+}
+
+.release-list-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.release-list-header .release-info {
+    flex: 1;
+}
+
+.release-list-header .release-summary {
+    color: color-mix(in srgb, var(--c-fg) 80%, transparent);
+    font-size: 0.95rem;
+    margin: 0.25rem 0 0;
+}
+
+.release-list-header .release-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.release-list-header .release-meta span {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 2rem;
+}
+
+.modal-content {
+    background: var(--c-bg);
+    border-radius: var(--br-lg);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    box-shadow: 0 20px 60px color-mix(in srgb, var(--c-accent) 20%, transparent);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    background: color-mix(in srgb, var(--c-accent) 5%, transparent);
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--c-fg);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    padding: 0.5rem;
+    border-radius: var(--br-md);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+}
+
+.modal-close:hover {
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+    color: var(--c-accent);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.release-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.release-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+    background: color-mix(in srgb, var(--c-accent) 5%, transparent);
+    border-radius: var(--br-md);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 10%, transparent);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--c-fg) 70%, transparent);
+}
+
+.meta-item i {
+    color: var(--c-accent);
+    font-size: 1rem;
+}
+
+.release-content {
+    flex: 1;
+}
+
+.markdown-content {
+    color: var(--c-fg);
+    line-height: 1.6;
+}
+
+.markdown-content ul {
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+.markdown-content li {
+    margin: 0.5rem 0;
+    color: var(--c-fg);
+}
+
+/* Sidebar Releases */
+.sidebar-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    padding: 0 2rem;
+    color: var(--c-fg);
+    margin-top: 2em;
+}
+
+.release-link {
+    display: block;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 10%, transparent);
+    text-decoration: none;
+    color: var(--c-fg);
+    transition: all 0.2s ease;
+}
+
+.release-link:hover {
+    background: color-mix(in srgb, var(--c-accent) 8%, transparent);
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.25rem;
+}
+
+.release-link .release-version {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--c-fg);
+}
+
+.release-link .release-date {
+    font-size: 0.8rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    margin-top: 0.25rem;
+}
+
+/* Month Groups for Sidebar */
+.release-groups {
+    padding: 0 2rem;
+}
+
+.month-group {
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--c-accent) 3%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+}
+
+.month-group:last-child {
+    margin-bottom: 0;
+}
+
+.month-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    background: color-mix(in srgb, var(--c-accent) 5%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 15%, transparent);
+    transition: all 0.2s ease;
+    list-style: none;
+    font-weight: 600;
+    color: var(--c-fg);
+}
+
+.month-summary:hover {
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+}
+
+.month-summary::marker {
+    display: none;
+}
+
+.month-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Custom calendar emoji marker */
+.month-summary::before {
+    content: '📅';
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.month-group[open] .month-summary::before {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.month-name {
+    font-size: 0.9rem;
+    color: var(--c-fg);
+}
+
+.month-count {
+    font-size: 0.8rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    background: color-mix(in srgb, var(--c-accent) 15%, transparent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+}
+
+.month-releases {
+    padding: 0.5rem 0;
+    background: var(--c-bg);
+}
+
+.month-releases .release-link {
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 10%, transparent);
+}
+
+.month-releases .release-link:last-child {
+    border-bottom: none;
+}
+
+.month-releases .release-link:hover {
+    background: color-mix(in srgb, var(--c-accent) 5%, transparent);
+    margin: 0;
+    padding-left: 1.5rem;
+    padding-right: 1rem;
+    border-radius: 0;
+}
+
+.month-releases .release-version {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--c-fg);
+}
+
+.month-releases .release-date {
+    font-size: 0.75rem;
+    color: color-mix(in srgb, var(--c-fg) 50%, transparent);
+    margin-top: 0.25rem;
+}
+
+/* Sidebar Summary */
+.sidebar-summary {
+    padding: 0 2rem 1rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 20%, transparent);
+    margin-bottom: 1rem;
+    height: fit-content;
+}
+
+.total-releases {
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .changelog-sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+
+    .changelog-main {
+        margin-left: 0;
+    }
+
+    .changelog-layout {
+        flex-direction: column;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .filter-left,
+    .filter-right {
+        width: 100%;
+    }
+
+    .releases-grid {
+        grid-template-columns: 1fr;
+        margin: 0 1rem 2rem;
+    }
+
+    .stats-bar {
+        margin: 0 1rem 2rem;
+        grid-template-columns: 1fr;
+    }
+}
