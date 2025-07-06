@@ -2,6 +2,12 @@
 
 A modern, responsive changelog renderer built with pure JavaScript - no frameworks required!
 
+## Demo
+
+🌐 **[Live Demo](https://vanillia.jonellwood.dev)** - See it in action!
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fc9f9758-167b-441b-b307-6543d3554ba0/deploy-status)](https://app.netlify.com/projects/vanilla-changelog-demo/deploys)
+
 ## Features
 
 - 🎨 **Modern Design**: Beautiful card-based interface with dark mode support
